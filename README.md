@@ -43,3 +43,4 @@ The Prediction section explains the development of a multiple linear regression 
         
         
 
+This work forms part of a Master of Science [thesis project](https://dalspace.library.dal.ca/handle/10222/81485) completed at Dalhousie University under the supervision of Dr. Eric Oliver.
