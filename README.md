@@ -34,7 +34,7 @@ The Prediction section explains the development of a multiple linear regression 
     - MLR is trained 
         - input: ERA5 possible predictor fields 
         - output: final predictors, regression coefficients of fitted MLRs
-4. pred_MLR.py
+4. pred_forecast.py
     - predict the number of storms using the MLR
     - calculate the probability of average, below average, and above average storm activity 
     - produce the worded probabilist forecast
