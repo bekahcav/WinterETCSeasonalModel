@@ -433,7 +433,8 @@ def worded_forecast(ts_training, y_hat, y_hat_training, model_predictors, model_
 	else: 
 		p = 'very unlikely'
 		
-	print('It is '+p+' to be an above average storm season')
+	w_above = 'It is '+p+' to be an above average storm season'
+	print(w_above)
 	
 	if p_avg >= 90:
 		p = 'very likely'
@@ -446,7 +447,8 @@ def worded_forecast(ts_training, y_hat, y_hat_training, model_predictors, model_
 	else: 
 		p = 'very unlikely'
 		
-	print('It is '+p+' to be a below average storm season')	
+	w_avg = 'It is '+p+' to be a below average storm season'
+	print(w_avg)
 	
 	if p_below >= 90:
 		p = 'very likely'
@@ -459,5 +461,8 @@ def worded_forecast(ts_training, y_hat, y_hat_training, model_predictors, model_
 	else: 
 		p = 'very unlikely'
 		
-	print('It is '+p+' to be a below average storm season')
+	w_below = 'It is '+p+' to be a below average storm season'
+	print(w_below)
+	
+	return [w_above, w_avg, w_below]
 	
