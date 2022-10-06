@@ -47,12 +47,11 @@ lon = lon_orig[clon1:(clon2+1)]
 yearStart = 2019; yearEnd = 2022; years = np.arange(yearStart, yearEnd)
 for yr in years:
 	yr_ind = yr-2019
-	forecast = pd.DataFrame(columns = keys_series, index = ['y_obs','y_hat', 'P(above)', 'P(average)', 'P(below)','sigma_hat'])
+	forecast = pd.DataFrame(columns = keys_series, index = ['y_obs','y_hat', 'P(above)', 'P(average)', 'P(below)'])
 	for key_i in range(len(keys_series)):
 		key = keys_series[key_i]
 		ts = subseries[key]
 		ts_training = subseries_training[key]
-		colour = colours[key]
 		model_predictors_training = pd.read_pickle('/home/rebekahc/bek/programs/rc/MSc/tracks_prediction/pred_MLR/model_predictors'+key+'_Sept_multitrained_sub2_980665.pkl')
 		full_parameters = np.load('/home/rebekahc/bek/programs/rc/MSc/tracks_prediction/pred_MLR/parameters_'+key+'_Sept_multitrained_sub2_980665.npz',allow_pickle=True); coefs = full_parameters['coefficients']; intcpt = full_parameters['intercept']
 		y_hat_training = pd.read_pickle('/home/rebekahc/bek/programs/rc/MSc/tracks_prediction/pred_MLR/predicted_values'+key+'_Sept_multitrained_sub2_980665.pkl')
@@ -92,17 +91,11 @@ for yr in years:
 		# calculate the probabilities of each cat
 		probs = pr.prob_forecast(ts_training, y_hat, y_hat_training, model, model_predictors_training)
 		forecast_key.extend(probs)
-    		pr.worded_forecast(ts_training, y_hat, y_hat_training, model, model_predictors_training)
+    		words = pr.worded_forecast(ts_training, y_hat, y_hat_training, model, model_predictors_training)
 
 		forecast[key] = forecast_key
 		#print(y_hat,model,np.mean(model_predictors_training),sep='\n')
 
 	print(forecast)
-	forecast.to_pickle('/data/home/rebekahc/bek/programs/rc/MSc/tracks_prediction/pred_MLR/pred_outputs/forecasts/stormprediction_'+str(yr)+'-'+str(yr+1)+'season_980665')
-
-
-for yr in years:
-	print(' ',yr,sep ='\n')
-	forecast = pd.read_pickle('/data/home/rebekahc/bek/programs/rc/MSc/tracks_prediction/pred_MLR/pred_outputs/forecasts/stormprediction_'+str(yr)+'-'+str(yr+1)+'season_980665')
-	print(forecast.round(3))
+	forecast.to_pickle('/data/home/rebekahc/bek/programs/rc/MSc/tracks_prediction/pred_MLR/pred_outputs/forecasts/stormprediction_'+str(yr)+'-'+str(yr+1)+'season_quartiles')
 
