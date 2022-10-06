@@ -1,4 +1,4 @@
-# Winter seasonal extratropical cyclone forecast model
+# Winter Seasonal Extratropical Cyclone Forecast Model
 This respository contains the code to build a seasonal forecast of extratropical cyclones (ETCs) at a given location (Halifax is used here). It has two main sections, the first being the development of an ETC storm track dataset and the second being the development of a multiple linear regression (MLR) model and a probabilistic framework that gives seasonal forecasts of ETC activity based on the MLR outputs.   
 
 The Tracking section explains the automated detection and tracking of low-pressure storms from a series of mean sea level pressure (MSLP) maps from ERA5 Reanalysis dataset. Developed as an adaptation of [stormTracking by Dr. Eric Oliver](https://github.com/ecjoliver/stormTracking) with added criteria for storm detection and slightly modified method of defining the storm centre.
