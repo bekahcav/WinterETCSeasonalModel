@@ -427,7 +427,7 @@ def worded_forecast(ts_training, y_hat, y_hat_training, model_predictors, model_
 	elif p_above >= 67:
 		p = 'likely'
 	elif p_above >= 34:
-		p = 'about as likely as not"
+		p = 'about as likely as not'
 	elif p_above >= 11:
 		p = 'unlikely'
 	else: 
@@ -440,7 +440,7 @@ def worded_forecast(ts_training, y_hat, y_hat_training, model_predictors, model_
 	elif p_avg >= 67:
 		p = 'likely'
 	elif p_avg >= 34:
-		p = 'about as likely as not"
+		p = 'about as likely as not'
 	elif p_avg >= 11:
 		p = 'unlikely'
 	else: 
@@ -453,7 +453,7 @@ def worded_forecast(ts_training, y_hat, y_hat_training, model_predictors, model_
 	elif p_below >= 67:
 		p = 'likely'
 	elif p_below >= 34:
-		p = 'about as likely as not"
+		p = 'about as likely as not'
 	elif p_below >= 11:
 		p = 'unlikely'
 	else: 
