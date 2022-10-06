@@ -408,3 +408,56 @@ def prob_forecast(ts_training, y_hat, y_hat_training, model_predictors, model_pr
 
 	return [p_above, p_avg, p_below]
 
+def worded_forecast(ts_training, y_hat, y_hat_training, model_predictors, model_predictors_training):
+	'''
+	Gives the likelihood that the storm counts of a season will be within each of the forecast categories: above average, average, below average. Based on a prediction interval with a normal distribution centred on y_hat with SD sigma_hat
+
+	inputs: forecasted storms (y_hat)
+			observed storms (ts)
+			model_predictors (to calculate the standard deviation of the prediction)
+	outputs: worded forecast likelihood statements
+
+	'''	
+	import numpy as np 
+	
+	p_above, p_avg, p_below = prob_forecast(ts_training, y_hat, y_hat_training, model_predictors, model_predictors_training)
+	
+	if p_above >= 90:
+		p = 'very likely'
+	elif p_above >= 67:
+		p = 'likely'
+	elif p_above >= 34:
+		p = 'about as likely as not"
+	elif p_above >= 11:
+		p = 'unlikely'
+	else: 
+		p = 'very unlikely'
+		
+	print('It is '+p+' to be an above average storm season')
+	
+	if p_avg >= 90:
+		p = 'very likely'
+	elif p_avg >= 67:
+		p = 'likely'
+	elif p_avg >= 34:
+		p = 'about as likely as not"
+	elif p_avg >= 11:
+		p = 'unlikely'
+	else: 
+		p = 'very unlikely'
+		
+	print('It is '+p+' to be a below average storm season')	
+	
+	if p_below >= 90:
+		p = 'very likely'
+	elif p_below >= 67:
+		p = 'likely'
+	elif p_below >= 34:
+		p = 'about as likely as not"
+	elif p_below >= 11:
+		p = 'unlikely'
+	else: 
+		p = 'very unlikely'
+		
+	print('It is '+p+' to be a below average storm season')
+	
