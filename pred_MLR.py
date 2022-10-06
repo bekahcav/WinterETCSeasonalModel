@@ -92,7 +92,7 @@ for yr in years:
 		# calculate the probabilities of each cat
 		probs = pr.prob_forecast(ts_training, y_hat, y_hat_training, model, model_predictors_training)
 		forecast_key.extend(probs)
-    pr.worded_forecast(ts_training, y_hat, y_hat_training, model, model_predictors_training)
+    		pr.worded_forecast(ts_training, y_hat, y_hat_training, model, model_predictors_training)
 
 		forecast[key] = forecast_key
 		#print(y_hat,model,np.mean(model_predictors_training),sep='\n')
