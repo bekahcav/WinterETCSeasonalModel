@@ -11,8 +11,9 @@ for year in `seq 2013 2020`;do for month in `seq 1 12`;do wget --content-disposi
 '''
 import pandas as pd 
 import matplotlib.pyplot as plt 
-
+import subprocess
 # cd to data location
+subprocess.call(['sh', './get_ECCCobs.sh'])
 
 # start with this to get correct cols etc. but we will drop this entry at the end
 hfx_obs = pd.read_csv('./en_climate_hourly_NS_8202250_10-1979_P1H.csv', index_col = ['Date/Time (LST)'])
