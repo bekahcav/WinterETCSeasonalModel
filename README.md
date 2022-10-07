@@ -1,5 +1,5 @@
 # Winter Seasonal Extratropical Cyclone Forecast Model
-This respository contains six scripts that together produce a probabilistic seasonal forecast of extratropical cyclone (ETCs) activity and characteristics at a given location (I used Halifax). It has two main sections, the first being the development of an ETC storm track dataset and the second being the development of a multiple linear regression (MLR) model and a probabilistic framework that gives forecasts based on the MLR outputs.   
+This respository contains six main scripts and three supporting scripts that together produce a probabilistic seasonal forecast of extratropical cyclone (ETCs) activity and characteristics at a given location (I used Halifax). It has two main sections, the first being the development of an ETC storm track dataset and the second being the development of a multiple linear regression (MLR) model and a probabilistic framework that gives forecasts based on the MLR outputs.   
 
 The Tracking section executes the automated detection and tracking of low-pressure storms from a series of mean sea level pressure (MSLP) maps from ERA5 Reanalysis dataset. Developed as an adaptation of [stormTracking by Dr. Eric Oliver](https://github.com/ecjoliver/stormTracking) with added criteria for storm detection and slightly modified method of defining the storm centre.
 
@@ -42,5 +42,5 @@ The Prediction section executes the development of a multiple linear regression 
         - output: probabilistic forecast of winter ETC activity, MLR-predicted number of storms 
         
         
-
+## 
 This work forms part of my [MSc thesis](https://dalspace.library.dal.ca/handle/10222/81485) completed at Dalhousie University under the supervision of [Dr. Eric Oliver](https://github.com/ecjoliver). If you have any questions, you can reach me by email at r.cavanagh@dal.ca.
