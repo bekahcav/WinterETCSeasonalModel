@@ -1,3 +1,10 @@
+'''
+2021 
+	Rebekah Cavanagh
+	- develop the set of MLRs to forecast storm activity
+		- select predictors using stepwise regression and cross-validation
+		- fit models and output parameters (best predictors, coefs, etc.)
+'''
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -10,7 +17,6 @@ path.append('/data/home/rebekahc/bek/programs/rc/MSc/tracks_prediction/')
 import pred_functions as pr
 from textwrap import wrap
 
-# will need to do this for each time series that we are predicting
 ############# load the subseries #############
 radius = '750w1000'
 subseries = np.load('/home/rebekahc/bek/programs/rc/MSc/tracks_prediction/pred_predictands/series_hfx_r'+radius+'_state.npz', allow_pickle=True)['subseries'].item()
@@ -20,7 +26,6 @@ years = np.arange(1979,2019)
 # use a forecast horizon of 1 month (Sept --> same winter)
 # first get the locations of the max corrs over the first 25 years
 variables = ['T500','T2M','MSLP','500Z','U250','V250', 'WND250', 'TPWV']
-#variables = ['T500','T2M','500Z','U250','V250', 'WND250', 'TPWV']
 lag = 0
 
 var = 'TPWV'; suff= 'gradient_'; key = 'total'
