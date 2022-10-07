@@ -1,8 +1,10 @@
 '''
+2021 - Rebekah Cavanagh
+predict the number of storms using the MLR and apply the probabilistic framework to get the worded forecast
 output:
 	predicted number of each type of storms for the season with likelihood in each prediction category.
-	df - columns = storm categories
-	rows = y_hat, prob above avg, prob avg, prob below avg
+	df-- columns = storm categories, rows = y_hat, prob above avg, prob avg, prob below avg
+	prints worded forecast
 '''
 
 import pandas as pd 
