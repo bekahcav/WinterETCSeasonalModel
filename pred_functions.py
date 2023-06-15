@@ -368,8 +368,47 @@ def find_nearest(array, value):
     idx = (np.abs(array - value)).argmin()
     return (array[idx], idx)
 
-
 def prob_forecast(ts_training, y_hat, y_hat_training, model_predictors, model_predictors_training):
+	'''
+	Gives the probability that the storm counts of a season will be within each of the forecast categories: above average, average, below average. Based on a prediction interval with a t distribution centred on y_hat with SD sigma_hat
+
+	inputs: forecasted storms (y_hat)
+			observed storms (ts)
+			model_predictors (to calculate the standard deviation of the prediction)
+
+	'''
+
+	from scipy.stats import norm,t
+	import numpy as np 
+
+	y_bar = np.mean(ts_training)
+	sigma_bar = np.std(ts_training)
+	df = len(ts_training)-len(model_predictors_training.columns)-1
+	bot_quart, top_quart = np.percentile(ts_training, [25,75])
+
+	ones_data = np.ones(shape=(len(ts_training)))
+	ones = pd.DataFrame(ones_data, columns=['x_o'], index = model_predictors_training.index)
+	model_predictors_training_1 = pd.merge(ones,model_predictors_training, left_index=True,right_index=True)
+	one = [1]
+	one.extend(model_predictors)
+	model_predictors_1 = np.array(one)
+
+	MSE = np.mean((y_hat_training.iloc[:,-1]-ts_training)**2)
+	inv_xtx = np.linalg.inv(np.matmul(model_predictors_training_1.T,model_predictors_training_1))
+	sigma_hat = (np.sqrt(MSE*(1 + np.matmul(np.matmul(model_predictors_1,inv_xtx),model_predictors_1.T))))
+
+	vals = []
+	#for th in [y_bar+sigma_bar, y_bar-sigma_bar]:
+	for th in [top_quart, bot_quart]:
+		vals.append(t.cdf(th, df, loc = y_hat, scale = sigma_hat))
+
+	p_above = 1 - vals[0]
+	p_below = vals[1]
+	p_avg = vals[0]-vals[1]
+
+	return [p_above, p_avg, p_below]
+
+def prob_forecast_quart(ts_training, y_hat, y_hat_training, model_predictors, model_predictors_training):
 	'''
 	Gives the probability that the storm counts of a season will be within each of the forecast categories: above average, average, below average. Based on a prediction interval with a normal distribution centred on y_hat with SD sigma_hat
 
