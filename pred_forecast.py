@@ -99,5 +99,5 @@ for yr in years:
 		#print(y_hat,model,np.mean(model_predictors_training),sep='\n')
 
 	print(forecast)
-	forecast.to_pickle('/data/home/rebekahc/bek/programs/rc/MSc/tracks_prediction/pred_MLR/pred_outputs/forecasts/stormprediction_'+str(yr)+'-'+str(yr+1)+'season_quartiles')
+	forecast.to_pickle('/data/home/rebekahc/bek/programs/rc/MSc/tracks_prediction/pred_MLR/pred_outputs/forecasts/stormprediction_'+str(yr)+'-'+str(yr+1)+'season_tdist')
 
